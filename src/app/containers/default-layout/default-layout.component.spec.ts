@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { DefaultLayoutComponent } from './default-layout.component';
+import { CoreModule } from 'src/app/shared/core/core.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppAsideModule, AppBreadcrumbModule, AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angular';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 describe('DefaultLayoutComponent', () => {
   let component: DefaultLayoutComponent;
@@ -8,9 +13,19 @@ describe('DefaultLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DefaultLayoutComponent ]
+      imports: [
+        CoreModule,
+        RouterTestingModule,
+        AppAsideModule,
+        AppBreadcrumbModule.forRoot(),
+        AppFooterModule,
+        AppHeaderModule,
+        AppSidebarModule,
+        PerfectScrollbarModule,
+      ],
+      declarations: [DefaultLayoutComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

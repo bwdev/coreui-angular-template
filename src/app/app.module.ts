@@ -11,6 +11,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 
 // Import containers
@@ -19,6 +22,19 @@ import { DefaultLayoutComponent } from './containers';
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
+
+const LOCATION_STRATEGY = {
+  provide: LocationStrategy,
+  useClass: HashLocationStrategy
+};
+
+import { AppInterceptor } from './shared/app.interceptor';
+
+const INTERCEPTORS = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: AppInterceptor,
+  multi: true
+};
 
 import {
   AppAsideModule,
@@ -31,6 +47,9 @@ import {
 // Import routing module
 import { AppRoutingModule } from './app.routing';
 import { DashboardModule } from './views/dashboard/dashboard.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { NavigationService } from './shared/navigation.service';
 
 
 @NgModule({
@@ -44,16 +63,23 @@ import { DashboardModule } from './views/dashboard/dashboard.module';
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,
-    DashboardModule
+    DashboardModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    StoreDevtoolsModule.instrument({
+      name: 'NGRX DevTools',
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
-  bootstrap: [ AppComponent ]
+  providers: [
+    LOCATION_STRATEGY,
+    INTERCEPTORS,
+    NavigationService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
