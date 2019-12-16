@@ -51,6 +51,7 @@ import { AppRoutingModule } from './app.routing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NavigationService } from './shared/navigation.service';
+import { PagesModule } from './views/pages/pages.module';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { NavigationService } from './shared/navigation.service';
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,
+    PagesModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     GlobalStoreModule,
     StoreDevtoolsModule.instrument({

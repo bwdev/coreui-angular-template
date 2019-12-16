@@ -6,6 +6,8 @@ import { CoreModule } from 'src/app/shared/core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppAsideModule, AppBreadcrumbModule, AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angular';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { TestStore } from 'src/app/store/test-store';
+import { Store } from '@ngrx/store';
 
 describe('DefaultLayoutComponent', () => {
   let component: DefaultLayoutComponent;
@@ -23,7 +25,8 @@ describe('DefaultLayoutComponent', () => {
         AppSidebarModule,
         PerfectScrollbarModule,
       ],
-      declarations: [DefaultLayoutComponent]
+      declarations: [DefaultLayoutComponent],
+      providers: [{ provide: Store, useClass: TestStore }]
     })
       .compileComponents();
   }));
