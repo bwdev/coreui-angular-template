@@ -16,6 +16,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
+import { GlobalStoreModule } from './store/global/global-store.module';
+
 // Import containers
 import { DefaultLayoutComponent } from './containers';
 
@@ -46,7 +48,6 @@ import {
 
 // Import routing module
 import { AppRoutingModule } from './app.routing';
-import { DashboardModule } from './views/dashboard/dashboard.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NavigationService } from './shared/navigation.service';
@@ -63,8 +64,8 @@ import { NavigationService } from './shared/navigation.service';
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,
-    DashboardModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    GlobalStoreModule,
     StoreDevtoolsModule.instrument({
       name: 'NGRX DevTools',
       maxAge: 25,

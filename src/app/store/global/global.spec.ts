@@ -3,9 +3,19 @@ import { featureReducer } from './reducer';
 import { GetNavigation, GetNavigationSuccess, GetNavigationFailure } from './actions';
 import { INavData } from '@coreui/angular';
 import { GlobalEffects } from './effects';
-import { take } from 'rxjs/operators';
+import { getTestScheduler, cold, addMatchers, initTestScheduler } from 'jasmine-marbles';
+import { async } from 'rxjs/internal/scheduler/async';
+import { NavigationService } from 'src/app/shared/navigation.service';
+import { Actions } from '@ngrx/effects';
+import { of, concat, combineLatest } from 'rxjs';
+import { map, concatMap } from 'rxjs/operators';
 
 describe('Global Store Tests', () => {
+
+    beforeEach(() => {
+        initTestScheduler();
+        addMatchers();
+    });
 
     it('should default the state', () => {
         const st = state.initialState;
@@ -45,4 +55,13 @@ describe('Global Store Tests', () => {
         expect(res.errorStack.length).toBe(1);
         expect(res.loaders[state.Loaders.Navigation]).toBe(false);
     });
+
+    it('should show how to create spy..', () => {
+        const testNav = new NavigationService();
+        testNav.getNav = jasmine.createSpy('getNav').and.returnValue(cold('a', { a: [{}, {}, {}] }));
+        const res$ = testNav.getNav();
+        expect(testNav.getNav).toHaveBeenCalled();
+        expect(res$).toBeObservable(cold('a', { a: [{}, {}, {}] }));
+    });
+
 });
