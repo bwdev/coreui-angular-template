@@ -23,8 +23,6 @@ export class DefaultLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.navItems$ = this.store.select(globalStore.selectNavigation);
-
-    this.navItems$.subscribe(s => console.log(s));
   }
 
   toggleMinimize(e) {
