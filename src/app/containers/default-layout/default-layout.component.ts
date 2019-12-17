@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
-  templateUrl: './default-layout.component.html'
+  templateUrl: './default-layout.component.html',
+  styleUrls: ['./default-layout.component.scss']
 })
 export class DefaultLayoutComponent implements OnInit {
 

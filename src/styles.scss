@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+app-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    line-height: 2;
+}
+
+.app, app-dashboard, app-root {
+    min-height: 800px;
+    margin-bottom:20px;
+}
