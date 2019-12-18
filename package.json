@@ -22,6 +22,7 @@
     "@angular/router": "~8.2.14",
     "@angular/service-worker": "~8.2.14",
     "@coreui/angular": "^2.7.1",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "@ngrx/core": "^1.2.0",
     "@ngrx/effects": "^8.5.2",
     "@ngrx/store": "^8.5.2",

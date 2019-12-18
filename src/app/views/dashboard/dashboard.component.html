@@ -1,4 +1,11 @@
 <div class="animated fadeIn">
   <span>CoreUI Dashboard</span>
   <!-- <app-local-loader [loadingState]="true"></app-local-loader> -->
+  <div class="row">
+    <div class="col-sm-12">
+      <ngb-simple-modal [title]="'My awesome title'" (dismissModal)="onDismissModal($event)">
+        <i>This is some content for the modal</i>
+      </ngb-simple-modal>
+    </div>
+  </div>
 </div>

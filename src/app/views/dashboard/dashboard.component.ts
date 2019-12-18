@@ -11,4 +11,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
   }
+
+  onDismissModal(obj) {
+    console.log('I am dismissing the modal!', obj);
+  }
 }
