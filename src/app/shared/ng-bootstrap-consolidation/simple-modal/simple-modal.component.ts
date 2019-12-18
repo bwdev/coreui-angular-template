@@ -24,6 +24,7 @@ export class SimpleModalComponent implements OnInit {
     };
 
     @Input() title: string;
+    @Input() options: NgbModalOptions;
     @Output() dismissModal: EventEmitter<any> = new EventEmitter<any>();
 
     modal: NgbModalRef;
@@ -33,6 +34,6 @@ export class SimpleModalComponent implements OnInit {
     ngOnInit() { }
 
     open(content) {
-        this.modal = this.modalService.open(content, this.modalOptionsDefault);
+        this.modal = this.modalService.open(content, Object.assign({}, this.modalOptionsDefault, this.options));
     }
 }
